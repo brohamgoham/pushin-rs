@@ -1,0 +1,13 @@
+[package]
+name = "pushin-rs"
+version = "0.1.0"
+edition = "2021"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+default-net = "0.14.0"
+clap = "4.1.12"
+pnet = "0.33.0"
+chrono = "0.4.23"

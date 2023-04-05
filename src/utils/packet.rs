@@ -82,11 +82,11 @@ pub fn get_imcpv6_type_string(imcpv6type: Icmpv6Type) -> String {
         // now we will do some checks to see if flags 
         // shoule be combines
         _ => {
-            if tcp_flags == TcpFlags::FIN | TcpFlags::ACK {
-                return String::from("FIN+ACK");
-            }
-            else if tcp_flags == TcpFlags::SYN | TcpFlags::ACK {
+            if tcp_flags == TcpFlags::SYN | TcpFlags::ACK {
                 return String::from("SYN+ACK");
+            }
+            else if tcp_flags == TcpFlags::FIN | TcpFlags::ACK {
+                return String::from("FIN+ACK");
             }
             else if tcp_flags == TcpFlags::RST | TcpFlags::ACK {
                 return String::from("RST+ACK");

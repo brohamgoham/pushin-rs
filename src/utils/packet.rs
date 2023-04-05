@@ -60,7 +60,7 @@ pub fn get_imcpv6_type_string(imcpv6type: Icmpv6Type) -> String {
         Icmpv6Types::EchoReply => {return String::from("Echo Reply");},
         Icmpv6Types::EchoRequest => {return String::from("Echo Request");},
         Icmpv6Types::ParameterProblem => {return String::from("Parameter Problem");},
-        Icmpv6Type::TimeExceeded => {returb String::from("Time Exceeded");},
+        Icmpv6Type::TimeExceeded => {return String::from("Time Exceeded");},
         _ => {return String::from("Unknown");}
     }
 }

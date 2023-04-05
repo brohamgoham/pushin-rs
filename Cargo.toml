@@ -1,7 +1,12 @@
 [package]
 name = "pushin-rs"
 version = "0.1.0"
-edition = "2021"
+edition = "2018"
+description = "Cross-platform packet capture tool"
+repository = "https://github.com/brohamgoham/pushin-rs"
+readme = "README.md"
+keywords = ["network","security","packet","cli"]
+categories = ["network-programming"]
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -11,3 +16,6 @@ default-net = "0.14.0"
 clap = "4.1.12"
 pnet = "0.33.0"
 chrono = "0.4.23"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3.9", features = [ "std" ] }

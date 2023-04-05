@@ -32,30 +32,30 @@ pub fn get_ethertype_string(ethertype: EtherType) -> String {
     }
 }
 
-pub fn get_imcp_type_string(imcptype: IcmpType) -> String {
-    match imcptype {
+pub fn get_icmp_type_string(icmptype: IcmpType) -> String {
+    match icmptype {
         IcmpTypes::AddressMaskReply => {return String::from("Address Mask Reply");},
-        ImcpTypes::AddressMaskRequest => {return String::from("Address Mask Request");},
-        ImcpTypes::DestinationUnreachable => {return String::from("Destination Unreachable");},
-        ImcpTypes::EchoReply => {return String::from("Echo Reply");},
-        ImcpTypes::EchoRequest => {return String::from("Echo Request");},
-        ImcpTypes::InformationReply => {return String::from("Information Reply");},
-        ImcpTypes::ImformationRequest => {return String::from("Information Request");},
-        ImcpTypes::ParameterProblem => {return String::("Parameter Proble");},
-        ImcpTypes::RedirectMessage => {return String::from("Redirect Message");},
-        ImcpTypes::RouterAdvertisement => {return String::from("Router Advertisement");},
-        ImcpTypes::RouterSolicitation => {return String::from("Router Solicitiation");},
-        ImcpTypes::SourceQuench => {return String::from("Source Quench");},
-        ImcpTypes::TimeExceeded => {return String::from("Time Exceeded");},
-        ImcpTypes::Timestamp => {return String::from("Timestamp");},
-        ImcpTypes::TimestampReply => {return String::from("Timestamp Reply");},
-        ImcpTypes::Traceroute => {return String::from("Traceroute");},
+        IcmpTypes::AddressMaskRequest => {return String::from("Address Mask Request");},
+        IcmpTypes::DestinationUnreachable => {return String::from("Destination Unreachable");},
+        IcmpTypes::EchoReply => {return String::from("Echo Reply");},
+        IcmpTypes::EchoRequest => {return String::from("Echo Request");},
+        IcmpTypes::InformationReply => {return String::from("Information Reply");},
+        IcmpTypes::ImformationRequest => {return String::from("Information Request");},
+        IcmpTypes::ParameterProblem => {return String::from("Parameter Proble");},
+        IcmpTypes::RedirectMessage => {return String::from("Redirect Message");},
+        IcmpTypes::RouterAdvertisement => {return String::from("Router Advertisement");},
+        IcmpTypes::RouterSolicitation => {return String::from("Router Solicitiation");},
+        IcmpTypes::SourceQuench => {return String::from("Source Quench");},
+        IcmpTypes::TimeExceeded => {return String::from("Time Exceeded");},
+        IcmpTypes::Timestamp => {return String::from("Timestamp");},
+        IcmpTypes::TimestampReply => {return String::from("Timestamp Reply");},
+        IcmpTypes::Traceroute => {return String::from("Traceroute");},
         _ => {return String::from("Unknown");},
     }
 }
 
-pub fn get_imcpv6_type_string(imcpv6type: Icmpv6Type) -> String {
-    match imcpv6type {
+pub fn get_icmpv6_type_string(icmpv6type: Icmpv6Type) -> String {
+    match icmpv6type {
         Icmpv6Types::DestinationUnreachable => {return String::from("Destination Unreachable");},
         Icmpv6Types::EchoReply => {return String::from("Echo Reply");},
         Icmpv6Types::EchoRequest => {return String::from("Echo Request");},
@@ -94,9 +94,9 @@ pub fn get_imcpv6_type_string(imcpv6type: Icmpv6Type) -> String {
             else if tcp_flags == TcpFlags::PSH | TcpFlags::ACK {
                 return String::from("PSH+ACK");
             }
-            else(
+            else {
                 return tcp_flags.to_string();
-            )
+            }
         },
     }
  }

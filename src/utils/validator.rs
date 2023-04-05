@@ -26,6 +26,11 @@ pub fn validate_host_opt(v: String) -> Result<(), String> {
     }
 }
 
+/// .
+///
+/// # Errors
+///
+/// This function will return an error if .
 pub fn validate_port_opt(v: String) -> Result<(), String> {
     match v.parse::<u16>() {
         Ok(_) => {

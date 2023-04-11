@@ -116,11 +116,11 @@ fn ipv4_handler(
             }
         }
 }
-/*
+
 fn ipv6_handler(
     ethernet: &pnet::packet::ethernet::EthernetPacket, 
     capture_options: &PacketCaptureOptions, 
     capture_info: CaptureInfo) {
         
     }
-    */
+    

@@ -61,14 +61,69 @@ fn main() {
         std::process::exit(0)
     }
     
-    if matches.is_present("default") {}
+    if matches.is_present("default") {
+        cap_options.default = true;
+    }
+    if let Some(name) = matches.value_of("interface") {
+        cap_options.interface_name = name.to_string();
+        if let Some(idx) = interface::get_interface_index_by_name(name.to_string()) {
+            cap_options.interface_index = idx;
+        }
+    }
+    if matches.is_present("promiscuous") {
+        cap_options.promiscuous = true;
+    }
+
+    if let Some(host) = matches.value_of("host") {
+        cap_options.src_ip = host.parse::<IpAddr>().expect(" Invalid IP Address.");
+        cap_options.dst_ip = host.parse::<IpAddr>().expect(" Invalid Destination IP");
+    } else {
+        if let Some(src) = matches.value_of("src") {
+            if sys::is_ipaddr(src) {
+                cap_options.src_ip = src.parse::<IpAddr>().expect("invalid IP address")
+            }
+        }
+        if let Some(dst) = matches.value_of("dst") {
+            if sys::is_ipaddr(dst) {
+                cap_options.dst_ip = dst.parse::<IpAddr>().expect("InValid Ip Address")
+            }
+        }
+    }
+    if let Some(port) = matches.value_of("port") {
+        cap_options.src_port = port.parse::<u16>().expect("Invalid Port");
+        cap_options.dst_port = port.parse::<u16>().expect("Invalid Port");
+    } else {
+        if let Some(src) = matches.values_of("src") {
+            if sys::is_port(src) {
+                cap_options.src_port = src.parse::<u16>().expect("Invalid port")
+            }
+        }
+        if let Some(dst) = matches.value_of("dst") {
+            if sys::is_port(dst) {
+                cap_options.dst_port = dst.parse::<IpAddr>().expect("INVALID PORT")
+            }
+        }
+    }
+    if let Some(protocol) = matches.value_of("protocol") {
+        let protocol_vec: Vec<&str> = protocol.trim().split(".").collect();
+        for protocol in protocol_vec {
+            cap_options.protocols.push(protocol.to_string())
+        }
+    }
+
+    if let Some(duration) = matches.value_of("duration") {
+        cap_options.duration = Duration::from_secs(duration.parse::<u64>().expect("Invalid Duration value"))
+    }
+
+    println!("{} {} CAPTURING ON {}", crate_name!(), crate_version!(), cap_options.interface_name);
+    pcap::start_capture(cap_options);   
 }
 
 fn get_settings<'a, 'b>() -> App<'a, 'b> {
     let app = App::new(crate_name!())
         .version(crate_version!())
         .author(CRATE_AUTHOR_GITHUB)
-        .about(crate_descrtiption!())
+        .about(crate_description!())
         .arg(Arg::with_name("list")
             .help("List available network interfaces")
             .short("l")

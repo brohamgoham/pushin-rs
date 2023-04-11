@@ -25,7 +25,7 @@ pub fn start_capture(capture_options: PacketCaptureOptions) {
         linux_fanout: None,
         promiscuous: capture_options.promiscuous,
     };
-    let (mut _tx, mut rx) = match pnet::datalink::channels(&interface, config) {
+    let (mut _tx, mut rx) = match pnet::datalink::channel(&interface, config) {
         Ok(pnet::datalink::Channel::Ethernet(tx, rx)) => (tx, rx),
         Ok(_) => panic!("Unknown channel type"),
         Err(e) => painic!("Error happened {}", e),
@@ -33,7 +33,7 @@ pub fn start_capture(capture_options: PacketCaptureOptions) {
     receive_packets(&mut rx, capture_options);
 }
 
-fn receive_packets(rx: &mut Box<dyn pnet::datalink::DatalinkReceiver>, capture_options: PacketCaptureOptions) {
+fn receive_packets(rx: &mut Box<dyn pnet::datalink::DataLinkReceiver>, capture_options: PacketCaptureOptions) {
     let start_time = Instant::now();
     let mut cnt = 1;
     loop {
@@ -166,7 +166,7 @@ fn vlan_handler(
     _capture_options: &PacketCaptureOptions,
     capture_info: CaptureInfo
 ) {
-    if let Some(vlan) => pnet::packet::vlan::VlanPacket::new(ethernet.payload()) {
+    if let Some(vlan) = pnet::packet::vlan::VlanPacket::new(ethernet.payload()) {
         print("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
         println!("[VLAN, {} -> {}, ID {}, Length {}]"
         , ethernet.get_source()
@@ -304,7 +304,7 @@ fn udp_handler_v6(
 
 /// ICMP Handler for IPV4
 fn icmp_handler(
-    packet: &pnet::packet::ipv4::Ipv4Packet
+    packet: &pnet::packet::ipv4::Ipv4Packet,
     _capture_options: &PacketCaptureOptions,
     capture_info: CaptureInfo
 ) {

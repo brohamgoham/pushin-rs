@@ -12,9 +12,9 @@ categories = ["network-programming"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-default-net = "0.14.0"
-clap = "4.1.12"
-pnet = "0.33.0"
+default-net = "0.3.0"
+clap = "2.33"
+pnet = "0.28.0"
 chrono = "0.4.23"
 
 [target.'cfg(windows)'.dependencies]

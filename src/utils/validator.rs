@@ -30,7 +30,6 @@ pub fn validate_host_opt(v: String) -> Result<(), String> {
 ///
 /// # Errors
 ///
-/// This function will return an error if .
 pub fn validate_port_opt(v: String) -> Result<(), String> {
     match v.parse::<u16>() {
         Ok(_) => {
@@ -43,12 +42,12 @@ pub fn validate_port_opt(v: String) -> Result<(), String> {
 }
 
 pub fn validate_duration_opt(v: String) -> Result<(), String> {
-    match v.parse::<u64> {
+    match v.parse::<u64>() {
         Ok(_) => {
             return Ok(())
         },
         Err(_) => {
-            return Err(String::from("Please specift port number"));
+            return Err(String::from("Please specific port number"));
         }
     }
 }
@@ -57,7 +56,7 @@ pub fn validate_protocol(v: String) -> Result<(), String> {
     let validate_protocol = db::get_protocol_list();
     let protocol_vec: Vec<&str> = v.trim().split(",").collect();
     for protocol in protocol_vec {
-        if !valid_protocols.contains(&protocol.to_string()) {
+        if !validate_protocol.contains(&protocol.to_string()) {
             return Err(String::from("Invalid protocol"));
         }
     }
@@ -76,7 +75,7 @@ pub fn validate_host_port(v: String) -> Result<(), String> {
     if host_valid || port_valid {
         Ok(())
     } else {
-        err(String::from("Please specify Ip Address or port Number!!"))
+        Err(String::from("Please specify Ip Address or port Number!!"))
     }
 }
 

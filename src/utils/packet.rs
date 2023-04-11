@@ -68,7 +68,7 @@ pub fn get_icmpv6_type_string(icmpv6type: Icmpv6Type) -> String {
  /// TCP flags are a low level network method
  /// We will do the ACK CWR ECE FIN NS PSH RST SYN 
  /// and URG to communiicate between packets in our target machine
- pub fn get_tcp_flags_string(tcp_flags: u16) -> String {
+ pub fn get_tcp_flag_string(tcp_flags: u16) -> String {
     match tcp_flags {
         TcpFlags::ACK => {return String::from("ACK");},
         TcpFlags::CWR => {return String::from("CWR");},

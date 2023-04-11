@@ -93,14 +93,14 @@ fn main() {
         cap_options.src_port = port.parse::<u16>().expect("Invalid Port");
         cap_options.dst_port = port.parse::<u16>().expect("Invalid Port");
     } else {
-        if let Some(src) = matches.values_of("src") {
-            if sys::is_port(src) {
-                cap_options.src_port = src.parse::<u16>().expect("Invalid port")
-            }
-        }
+      //  if let Some(src) = matches.values_of("src") {
+      //      if sys::is_port(dst) {
+      //          cap_options.src_port = src.parse::<u16>().expect("Invalid port")
+      //      }
+    //    }
         if let Some(dst) = matches.value_of("dst") {
             if sys::is_port(dst) {
-                cap_options.dst_port = dst.parse::<IpAddr>().expect("INVALID PORT")
+                cap_options.dst_port = dst.parse::<u16>().expect("INVALID PORT")
             }
         }
     }
@@ -163,7 +163,7 @@ fn get_settings<'a, 'b>() -> App<'a, 'b> {
             .value_name("port")
             .validator(validator::validate_port_opt)
         )
-        .arg(App::with_name("src")
+        .arg(Arg::with_name("src")
             .help("Source IP Address or Port")
             .short("S")
             .long("src")
@@ -171,7 +171,7 @@ fn get_settings<'a, 'b>() -> App<'a, 'b> {
             .value_name("src_ip_or_port")
             .validator(validator::validate_host_port)
         )
-        .arg(App::with_name("dst")
+        .arg(Arg::with_name("dst")
             .help("Destination IP Address or Port")
             .short("D")
             .long("dst")
@@ -179,7 +179,7 @@ fn get_settings<'a, 'b>() -> App<'a, 'b> {
             .value_name("dst_ip_or_port")
             .validator(validator::validate_host_port)
         )
-        .arg(App::with_name("protocol")
+        .arg(Arg::with_name("protocol")
             .help("Filter protocols, can be comma seperated")
             .short("p")
             .long("proto")
@@ -187,7 +187,7 @@ fn get_settings<'a, 'b>() -> App<'a, 'b> {
             .value_name("protocols")
             .validator(validator::validate_protocol)
         )
-        .arg(App::with_name("duration")
+        .arg(Arg::with_name("duration")
             .help("Set time limit (duration)")
             .short("d")
             .long("duration")

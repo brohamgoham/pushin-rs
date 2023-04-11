@@ -22,3 +22,8 @@ pub fn is_port(port: &str) -> bool {
         }
     } 
 }
+
+pub fn type_of<T>(_: T) -> String {
+    let z = std::any::type_name::<T>();
+    return z.to_string();
+}

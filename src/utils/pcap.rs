@@ -14,7 +14,7 @@ pub fn start_capture(capture_options: PacketCaptureOptions) {
     let interfaces = pnet::datalink::interfaces();
     let interface = interfaces.into_iter().filter(
         |interface: &pnet::datalink::NetworkInterface| 
-            interface.index = capture_options.interface_index).next().expect("Failed to get Interface");
+            interface.index == capture_options.interface_index).next().expect("Failed to get Interface");
     let config = pnet::datalink::Config {
         write_buffer_size: 4096,
         read_buffer_size: 4096,
@@ -253,7 +253,7 @@ fn tcp_handler_v6(
             , tcp.get_source()
             , packet.get_destination()
             , tcp.get_destination()
-            , packet::get_tcp_flag_string(tcp.get_flag())
+            , packet::get_tcp_flag_string(tcp.get_flags())
             , tcp.payload().len());
         }
     }
@@ -373,7 +373,7 @@ fn filter_protocol(
     protocol: &str,
     capture_options: &PacketCaptureOptions
 ) -> bool {
-    if capture_options.protocol.len() == 0 || capture_options.protocol.contains(&protocol.to_string()) {
+    if capture_options.protocols.len() == 0 || capture_options.protocols.contains(&protocol.to_string()) {
         return true;
     } else {
         return false;

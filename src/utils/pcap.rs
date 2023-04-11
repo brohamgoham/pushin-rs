@@ -218,17 +218,89 @@ fn rarp_handler(
 
 /// TCP handler for IPV4
 fn tcp_handler(
-    
-) {}
+    packet: &pnet::packet::ipv4::Ipv4Packet,
+    capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    let tcp = pnet::packet::tcp::TcpPacket::new(packet.payload());
+    if let Some(tcp) = tcp {
+        if filter_port(tcp.get_source(), tcp.get_destination(), capture_options) {
+            print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+            println!("[IPv4, {}:{} -> {}:{}, TCP {}, Length {}]"
+            , packet.get_source()
+            , tcp.get_source()
+            , packet.get_destination()
+            , tcp.get_destination()
+            , packet::get_tcp_flag_string(tcp.get_flags())
+            , tcp.payload().len());
+        }
+    }
+}
 
 /// TCP handler for IPV6
-fn tcp_handler_v6() {}
+fn tcp_handler_v6(
+    packet: &pnet::packet::ipv6::Ipv6Packet,
+    capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    let tcp = pnet::packet::tcp::TcpPacket::new(packet.payload());
+    if let Some(tcp) = tcp {
+        if filter_port(tcp.get_source(), tcp.get_destination(), capture_options) {
+            print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+
+            println!(" [IPv4, {}:{} -> {}:{},TCP {}, Length {}]"
+            , packet.get_source()
+            , tcp.get_source()
+            , packet.get_destination()
+            , tcp.get_destination()
+            , packet::get_tcp_flag_string(tcp.get_flag())
+            , tcp.payload().len());
+        }
+    }
+}
 
 /// UDP Handler for IPV4
-fn udp_handler() {}
+fn udp_handler(
+    packet: &pnet::packet::ipv4::Ipv4Packet,
+    capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    let udp = pnet::packet::udp::UdpPacket::new(packet.payload());
+    if let Some(udp) = udp {
+        if filter_port(udp.get_source(), udp.get_destination(), capture_options) {
+            print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+            println!("[IPv4, {}:{} -> {}:{}, UDP, Length {}]"
+            , packet.get_source()
+            , udp.get_source()
+            , packet.get_destination()
+            , udp.get_destination()
+            , udp.payload().len());
+        }
+    }
+}
 
 /// UDP Handler for IPV6
-fn udp_handler_v6() {}
+
+/// UDP Handler for IPV4
+fn udp_handler_v6(
+    packet: &pnet::packet::ipv6::Ipv6Packet,
+    capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    let udp = pnet::packet::udp::UdpPacket::new(packet.payload());
+    if let Some(udp) = udp {
+        if filter_port(udp.get_source(), udp.get_destination(), capture_options) {
+            print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+            println!("[IPv6, {}:{} -> {}:{}, UDP, Length {}]"
+            , packet.get_source()
+            , udp.get_source()
+            , packet.get_destination()
+            , udp.get_destination()
+            , udp.payload().len());
+        }
+    }
+}
+
 
 /// ICMP Handler for IPV4
 fn icmp_handler(

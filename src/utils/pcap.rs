@@ -176,10 +176,50 @@ fn vlan_handler(
     }
 }
 /// ARP Handler
+/// Address Resolution Protocol to resolve IP Addr to MAC addr
+/// ARP is to get MAC Addres RARP is to get IP Addr ex ARP Spoofing
+/// by capturing ARP packets we can detect sus activities on our network
+fn arp_handler(
+    ethernet: &pnet::packet::ethernet::EthernetPacket,
+    capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    if let Some(arp) = pnet::packet::arp::ArpPacket::new(ethernet.payload()) {
+        if filter_host(IpAddr::V4(arp.get_sender_proto_addr()), IpAddr::V4(arp.get_target_proto_addr()), capture_options) {
+            print!("[{}] [{}] ", capture_info.capture_no, capture_info.datatime);
+            println!("[ARP, {}({}) -> {}({}), Length {}]"
+            , arp.get_sender_proto_addr().to_string()
+            , arp.get_sender_hw_addr().to_string()
+            , arp.get_target_proto_addr().to_string()
+            , arp.get_target_hw_addr().to_string()
+            , arp.payload().len());
+        }
+    }
+}
 /// RARP Hanler
+/// Reverse Addr Resolution Protocol
+/// We can use  to map the network of our target
+fn rarp_handler(
+    ethernet: &pnet::packet::ethernet::EthernetPacket,
+    _capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    if let Some(arp) = pne::packet::arp::ArpPacket::new(ethernet.payload()) {
+        print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+        println!("[RARP, {}({}) -> {}({}), Length {}]"
+        , arp.get_sender_proto_addr().to_string()
+        , arp.get_sender_hw_addr().to_string()
+        , arp.get_target_proto_addr().to_string()
+        , arp.get_target_hw_addr().to_string()
+        , arp.payload().len());
+    }
+}
+
 
 /// TCP handler for IPV4
-fn tcp_handler() {}
+fn tcp_handler(
+    
+) {}
 
 /// TCP handler for IPV6
 fn tcp_handler_v6() {}
@@ -191,7 +231,37 @@ fn udp_handler() {}
 fn udp_handler_v6() {}
 
 /// ICMP Handler for IPV4
-fn icmp_handler() {}
+fn icmp_handler(
+    packet: &pnet::packet::ipv4::Ipv4Packet
+    _capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    if let Some(icmp) = pnet::packet::icmp::IcmpPacket::new(packet.payload()) {
+        print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+        println!("[IPv4, {} -> {}, ICMP {} {:?}, Length {}]"
+        , packet.get_source()
+        , packet.get_destination()
+        , packet::get_icmp_type_string(icmp.get_icmp_type())
+        , icmp.get_icmp_code()
+        , icmp.payload().len()
+        );
+    }
+}
 
 /// ICMP Handler for IPV6
-fn icmpv6_handler() {}
+fn icmpv6_handler(
+    packet: &pnet::packet::ipv6::Ipv6Packet,
+    _capture_options: &PacketCaptureOptions,
+    capture_info: CaptureInfo
+) {
+    if let Some(icmp) = pnet::packet::icmpv6::IcmpV6Packet::new(packet.payload()) {
+        print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+        println!("[IPv6, {} -> {}, ICMPv6 {} {:?}, Length {}]"
+        , packet.get_source()
+        , packet.get_destination()
+        , packet::get_icmpv6_type_string(icmp.get_icmpv6_type())
+        , icmp.get_icmpv6_code()
+        , icmp.payload().len()
+        );
+    }
+}

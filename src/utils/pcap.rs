@@ -337,3 +337,45 @@ fn icmpv6_handler(
         );
     }
 }
+
+fn filter_host(
+    src_ip: IpAddr,
+    dst_ip: IpAddr,
+    capture_options: &PacketCaptureOptions
+) -> bool {
+    let local_host = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
+    if capture_options.src_ip == local_host && capture_options.dst_ip == local_host {
+        return true;
+    }
+    if src_ip == capture_options.src_ip || dst_ip == capture_options.dst_ip {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+fn filter_port(
+    src_port: u16,
+    dst_port: u16,
+    capture_options: &PacketCaptureOptions
+) -> bool {
+    if capture_options.src_port == 0 && capture_options.dst_port == 0 {
+        return true;
+    }
+    if src_port == capture_options.src_port  || dst_port == capture_options.dst_port {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+fn filter_protocol(
+    protocol: &str,
+    capture_options: &PacketCaptureOptions
+) -> bool {
+    if capture_options.protocol.len() == 0 || capture_options.protocol.contains(&protocol.to_string()) {
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -1,0 +1,166 @@
+AARP,AppleTalk Address Resolution Protocol (AARP) [Apple].
+APPLETALK,AppleTalk - EtherTalk [Apple].
+ARP,Address Resolution Protocol (ARP) [RFC7042].
+CFM,CFM / Y.1731 [IEEE 802.1ag].
+COBRANET,CobraNet CobraNet.
+DECNET,DECnet Phase IV.
+FLOWCONTROL,Ethernet Flow Control [IEEE 802.3x].
+IPV4,Internet Protocol version 4 (IPv4) [RFC7042].
+IPV6,Internet Protocol version 6 (IPv6) [RFC7042].
+IPX,IPX [Xerox].
+LLDP,Link Layer Discovery Protocol (LLDP) [IEEE 802.1AB].
+MPLS,MPLS Unicast [RFC 3032].
+MPLSMCAST,MPLS Multicast [RFC 5332].
+PBRIDGE,Provider Bridging [IEEE 802.1ad / IEEE 802.1aq].
+PPPOEDISCOVERY,PPPOE Discovery Stage [RFC 2516].
+PPPOESESSION,PPPoE Session Stage [RFC 2516].
+PTP,Precision Time Protocol (PTP) over Ethernet [IEEE 1588].
+QINQ,Q-in-Q Vlan Tagging [IEEE 802.1Q].
+QNX,QNX Qnet [QNX Software Systems].
+RARP,Reverse Address Resolution Protocol (RARP) [RFC903].
+TRILL,IETF TRILL Protocol [IEEE].
+VLAN,VLAN-tagged frame (IEEE 802.1Q).
+WAKEONLAN,Wake on Lan.
+AN,Active Networks
+AH,Authentication Header [RFC4302]
+ARGUS,ARGUS
+ARIS,ARIS
+AX25,AX.25 Frames
+BBNRCCMON,BBN RCC Monitoring
+BNA,BNA
+BRSATMON,Backroom SATNET Monitoring
+CBT,CBT
+CFTP,CFTP
+CHAOS,Chaos
+COMPAQPEER,Compaq Peer Protocol
+CPHB,Computer Protocol Heart Beat
+CPNX,Computer Protocol Network Executive
+CRTP,Combat Radio Transport Protocol
+CRUDP,Combat Radio User Datagram
+DCCP,Datagram Congestion Control Protocol [RFC4340]
+DCNMEAS,DCN Measurement Subsystems
+DDP,Datagram Delivery Protocol
+DDX,D-II Data Exchange (DDX)
+DGP,Dissimilar Gateway Protocol
+DISTRIBUTEDFS,any distributed file system
+DSR,Dynamic Source Routing Protocol [RFC4728]
+EGP,Exterior Gateway Protocol [RFC888]
+EIGRP,EIGRP
+EMCON,EMCON
+ENCAP,Encapsulation Header [RFC1241]
+ESP,Encap Security Payload [RFC4303]
+ETHERIP,Ethernet-within-IP Encapsulation [RFC3378]
+FC,Fibre Channel [RFC6172]
+FIRE,
+GGP,Gateway-to-Gateway [RFC823]
+GMTP,GMTP
+GRE,Generic Routing Encapsulation [RFC1701]
+HIP,Host Identity Protocol [RFC5201]
+HMP,Host Monitoring [RFC869]
+HOPOPT,IPv6 Hop-by-Hop Option [RFC2460]
+HOSTINTERNAL,any host internal protocol
+INLSP,Integrated Net Layer Security TUBA
+IATP,Interactive Agent Transfer Protocol
+ICMP,Internet Control Message [RFC792]
+ICMPV6,ICMPv6 [RFC4443]
+IDPR,Inter-Domain Policy Routing Protocol
+IDPRCMTP,IDPR Control Message Transport Proto
+IDRP,Inter-Domain Routing Protocol
+IFMP,Ipsilon Flow Management Protocol
+IGMP,Internet Group Management [RFC1112]
+IGP,any private interior gateway (used by Cisco for their IGRP)
+IL,IL Transport Protocol
+IPCOMP,IP Payload Compression Protocol [RFC2393]
+IPIP,IP-within-IP Encapsulation Protocol
+IPCV,Internet Packet Core Utility
+IPLT,
+IPPC,Internet Pluribus Packet Core
+IPV6FRAG,Fragment Header for IPv6
+IPV6ICMP,Deprecated
+IPV6NONXT,No Next Header for IPv6 [RFC2460]
+IPV6OPTS,Destination Options for IPv6 [RFC2460]
+IPV6ROUTE,Routing Header for IPv6
+IPXINIP,IPX in IP
+IRTP,Internet Reliable Transaction [RFC938]
+ISISOVERIPV4,
+ISOIP,ISO Internet Protocol
+ISOTP4,ISO Transport Protocol Class 4 [RFC905]
+KRYPTOLAN,Kryptolan
+L2TP,Layer Two Tunneling Protocol [RFC3931]
+LARP,Locus Address Resolution Protocol
+LEAF1,Leaf-1
+LEAF2,Leaf-2
+LOCALNETWORK,any local network
+MANET,MANET Protocols [RFC5498]
+MERITINP,MERIT Internodal Protocol
+MFENSP,MFE Network Services Protocol
+MICP,Mobile Internetworking Control Pro.
+MOBILE,IP Mobility
+MOBILITYHEADER,[RFC6275]
+MPLSINIP,[RFC4023]
+MTP,Multicast Transport Protocol
+MUX,Multiplexing
+NARP,NBMA Address Resolution Protocol [RFC1735]
+NETBLT,Bulk Data Transfer Protocol [RFC969]
+NSFNETIGP,NSFNET-IGP
+NVPII,Network Voice Protocol [RFC741]
+OSPFIGP,OSPFIGP [RFC1583][RFC2328][RFC5340]
+PGM,PGM Reliable Transport Protocol
+PIM,Protocol Independent Multicast [RFC4601]
+PIPE,Private IP Encapsulation within IP
+PNNI,PNNI over IP
+PRIVENCRYPTION,any private encryption scheme
+PRM,Packet Radio Measurement
+PUP,PUP
+PVP,Packet Video Protocol
+RDP,Reliable Data Protocol [RFC908]
+RESERVED,
+ROHC,Robust Header Compression [RFC5858]
+RSVP,Reservation Protocol [RFC2205][RFC3209]
+RSVPE2EIGNORE,[RFC3175]
+RVD,MIT Remote Virtual Disk Protocol
+SATEXPAK,SATNET and Backroom EXPAK
+SATMON,SATNET Monitoring
+SCCSP,Semaphore Communications Sec. Pro.
+SCPS,SCPS
+SCTP,Stream Control Transmission Protocol
+SDRP,Source Demand Routing Protocol
+SECUREVMTP,SECURE-VMTP
+SHIM6,Shim6 Protocol [RFC5533]
+SKIP,SKIP
+SM,Simple Multicast Protocol
+SMP,Simple Message Protocol
+SNP,Sitara Networks Protocol
+SPRITERPC,Sprite RPC Protocol
+SPS,Secure Packet Shield
+SRP,SpectraLink Radio Protocol
+SSCOPMCE,
+ST,Stream [RFC1190][RFC1819]
+STP,Schedule Transfer Protocol
+SUNND,SUN ND PROTOCOL-Temporary
+SWIPE,IP with Encryption
+TCF,TCF
+TCP,Transmission Control [RFC793]
+TEST1,Use for experimentation and testing [RFC3692]
+TEST2,Use for experimentation and testing [RFC3692]
+THREEPC,Third Party Connect Protocol
+TLSP,Transport Layer Security Protocol using Kryptonet key management
+TPPLUSPLUS,TP++ Transport Protocol
+TRUNK1,Trunk-1
+TRUNK2,Trunk-2
+TTPORIPTM,Transaction Transport Protocol/IP Traffic Manager
+UDP,User Datagram [RFC768]
+UDPLITE,[RFC3828]
+UTI,UTI
+VINES,VINES
+VISA,VISA Protocol
+VMTP,VMTP
+VRRP,Virtual Router Redundancy Protocol [RFC5798]
+WBEXPAK,WIDEBAND EXPAK
+WBMON,WIDEBAND Monitoring
+WESP,Wrapped Encapsulating Security Payload [RFC5840]
+WSN,Wang Span Network
+XNET,Cross Net Debugger
+XNSIDP,XEROX NS IDP
+XTP,XTP
+ZEROHOP,any 0-hop protocol

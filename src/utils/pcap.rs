@@ -11,7 +11,7 @@ struct CaptureInfo {
 }
 
 pub fn start_capture(capture_options: PacketCaptureOptions) {
-    let interfaces = pnet::datalink::interface();
+    let interfaces = pnet::datalink::interfaces();
     let interface = interfaces.into_iter().filter(
         |interface: &pnet::datalink::NetworkInterface| 
             interface.index = capture_options.interface_index).next().expect("Failed to get Interface");
@@ -28,7 +28,7 @@ pub fn start_capture(capture_options: PacketCaptureOptions) {
     let (mut _tx, mut rx) = match pnet::datalink::channel(&interface, config) {
         Ok(pnet::datalink::Channel::Ethernet(tx, rx)) => (tx, rx),
         Ok(_) => panic!("Unknown channel type"),
-        Err(e) => painic!("Error happened {}", e),
+        Err(e) => panic!("Error happened {}", e),
     };
     receive_packets(&mut rx, capture_options);
 }
@@ -72,7 +72,7 @@ fn receive_packets(rx: &mut Box<dyn pnet::datalink::DataLinkReceiver>, capture_o
                         },
                         _ => {
                             if capture_options.default {
-                                eth_handler(&fram, &capture_options, capture_info);
+                                eth_handler(&frame, &capture_options, capture_info);
                             }
                         },
                     }
@@ -167,7 +167,7 @@ fn vlan_handler(
     capture_info: CaptureInfo
 ) {
     if let Some(vlan) = pnet::packet::vlan::VlanPacket::new(ethernet.payload()) {
-        print("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
+        print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
         println!("[VLAN, {} -> {}, ID {}, Length {}]"
         , ethernet.get_source()
         , ethernet.get_destination()
@@ -204,7 +204,7 @@ fn rarp_handler(
     _capture_options: &PacketCaptureOptions,
     capture_info: CaptureInfo
 ) {
-    if let Some(arp) = pne::packet::arp::ArpPacket::new(ethernet.payload()) {
+    if let Some(arp) = pnet::packet::arp::ArpPacket::new(ethernet.payload()) {
         print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
         println!("[RARP, {}({}) -> {}({}), Length {}]"
         , arp.get_sender_proto_addr().to_string()
@@ -326,7 +326,7 @@ fn icmpv6_handler(
     _capture_options: &PacketCaptureOptions,
     capture_info: CaptureInfo
 ) {
-    if let Some(icmp) = pnet::packet::icmpv6::IcmpV6Packet::new(packet.payload()) {
+    if let Some(icmp) = pnet::packet::icmpv6::Icmpv6Packet::new(packet.payload()) {
         print!("[{}] [{}]", capture_info.capture_no, capture_info.datatime);
         println!("[IPv6, {} -> {}, ICMPv6 {} {:?}, Length {}]"
         , packet.get_source()

@@ -2,7 +2,7 @@ use pnet::datalink;
 
 pub fn get_interface_index_by_name(if_name: String) -> Option<u32> {
     for iface in datalink::interfaces() {
-        if iface.name = if_name {
+        if iface.name == if_name {
             return Some(iface.index)
         }
     }
@@ -43,7 +43,7 @@ pub fn list_interfaces(default_interface_index: u32)  {
             }
         }
         for ip in interface.ips {
-            if ips.is_ipv4() {
+            if ip.is_ipv4() {
                 println!("\tIPv6: {}", ip);
             }
         }

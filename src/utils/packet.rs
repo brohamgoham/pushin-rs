@@ -40,7 +40,7 @@ pub fn get_icmp_type_string(icmptype: IcmpType) -> String {
         IcmpTypes::EchoReply => {return String::from("Echo Reply");},
         IcmpTypes::EchoRequest => {return String::from("Echo Request");},
         IcmpTypes::InformationReply => {return String::from("Information Reply");},
-        IcmpTypes::ImformationRequest => {return String::from("Information Request");},
+        IcmpTypes::InformationRequest => {return String::from("Information Request");},
         IcmpTypes::ParameterProblem => {return String::from("Parameter Proble");},
         IcmpTypes::RedirectMessage => {return String::from("Redirect Message");},
         IcmpTypes::RouterAdvertisement => {return String::from("Router Advertisement");},
@@ -60,7 +60,7 @@ pub fn get_icmpv6_type_string(icmpv6type: Icmpv6Type) -> String {
         Icmpv6Types::EchoReply => {return String::from("Echo Reply");},
         Icmpv6Types::EchoRequest => {return String::from("Echo Request");},
         Icmpv6Types::ParameterProblem => {return String::from("Parameter Problem");},
-        Icmpv6Type::TimeExceeded => {return String::from("Time Exceeded");},
+        Icmpv6Types::TimeExceeded => {return String::from("Time Exceeded");},
         _ => {return String::from("Unknown");}
     }
 }
@@ -68,7 +68,7 @@ pub fn get_icmpv6_type_string(icmpv6type: Icmpv6Type) -> String {
  /// TCP flags are a low level network method
  /// We will do the ACK CWR ECE FIN NS PSH RST SYN 
  /// and URG to communiicate between packets in our target machine
- pub fn get_tcp_flags_string(tcp_flags: u16) -> String {
+ pub fn get_tcp_flag_string(tcp_flags: u16) -> String {
     match tcp_flags {
         TcpFlags::ACK => {return String::from("ACK");},
         TcpFlags::CWR => {return String::from("CWR");},

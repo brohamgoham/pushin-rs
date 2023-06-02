@@ -1,4 +1,4 @@
-# pushin-rs A WORK IN PROGRESS DO NOT CLONE AND THEN COMPLAIN ITS HAVING ISSUE CAPTURE CERTAIN PACKETS!!!!!!
+# pushin-rs A WORK IN PROGRESS
 ## W.I.P.
 A fast packet capture tool written in rust
 supports tcp udp icmp

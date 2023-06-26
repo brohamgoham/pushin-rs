@@ -15,7 +15,7 @@ use std::net::{IpAddr, Ipv4Addr};
 use clap::{App, AppSettings, Arg};
 use default_net;
 
-const CRATE_UPDATE_DATE: &str = "2023-04-11";
+const CRATE_UPDATE_DATE: &str = "2023-06-26";
 const CRATE_AUTHOR_GITHUB: &str = "brohamgoham <https://github.com/brohamgoham>";
 
 #[cfg(target_os = "windows")]
